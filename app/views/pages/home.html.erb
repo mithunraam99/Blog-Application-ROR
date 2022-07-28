@@ -1,0 +1,12 @@
+<div class="jumbotron text-center">
+  <h1>Welcome to Tech Blog App</h1>
+  <h2>Technology News & Reviews</h2>
+ <% if !logged_in? %>
+  <p><%= link_to "Sign up", signup_path, class:'btn btn-danger btn-lg btn-xlg' %></p>
+  <% end %>
+</div>
+    <%= render "shared/page_title", title: " Recommended Articles" %> 
+    <%= render "articles/article_home", obj: @articles %>
+  </div>
+  
+ 

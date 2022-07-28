@@ -1,0 +1,22 @@
+
+<div class="row m-x-0">
+
+<% obj.each do |article| %>
+ <div class="col-md-5 well">
+    <h4><%= (article.name).upcase %></h4>
+    <p><%= truncate(article.description, length: 250) %></p>
+  </div>
+ 
+<% end %>
+</div>
+
+<%= javascript_tag do %>
+  jQuery(document).on("click", ".article-thumbs-up, .article-thumbs-down", function(event) {
+    jQuery.ajax({
+      url: this.dataset.url,
+      method: 'POST',
+      success: function(result) {
+      }
+    })
+  })
+<% end %>

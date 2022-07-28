@@ -1,0 +1,13 @@
+<%= render 'shared/page_title', title: "#{@category.name}" %>
+
+<% if @category.articles.count != 0 %>
+  <div class="text-center">
+    <%= will_paginate @category_articles %>
+  </div>
+  <%= render 'articles/article', obj: @category_articles %>
+  <div class="text-center">
+    <%= will_paginate @category_articles %>
+  </div>
+<% else %>
+  <h4 class="text-center">No articles yet!</h4>
+<% end %>

@@ -1,0 +1,23 @@
+<% if article.likes.where(user_id: current_user.id).present? %>
+    <% if article.likes.where(user_id: current_user.id).first.like? && like %>
+        <% fa_class = "fa-solid"%>
+    <% elsif !article.likes.where(user_id: current_user.id).first.like? && !like %>
+        <% fa_class = "fa-solid"%>
+    <% else %>
+        <% fa_class = "fa-regular"%>
+    <% end %>
+<% else %>
+    <% fa_class = "fa-regular"%>
+<% end %>
+
+<% if like %>
+    <%= link_to("javascript:void(0)", class: "article-thumbs-up", data: { url: like_article_path(article, like: true) }) do%>
+        <i class="<%= fa_class %> fa-thumbs-up"> </i>
+    <% end %>            
+    <%= article.thumbs_up_total %>
+<% else %>
+    <%= link_to("javascript:void(0)", class: "article-thumbs-down", data: { url: like_article_path(article, like: false) }) do%>
+        <i class="<%= fa_class %> fa-thumbs-down"> </i>
+    <% end %>
+    <%= article.thumbs_down_total %>
+<% end %>

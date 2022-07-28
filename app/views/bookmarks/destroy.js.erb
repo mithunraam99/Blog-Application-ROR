@@ -1,0 +1,3 @@
+$('#bookmark-icon-post-<%= @article.id.to_s %>').
+  html('<%= j render "articles/bookmark_icon", {is_bookmarked: @is_bookmarked, article: @article} %>');
+console.log("delete bookmark success");

@@ -1,0 +1,391 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+ */
+
+
+ 
+$navbar-default-bg: black;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "dropzone/dropzone";
+@import "font-awesome";
+
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+// Home Page
+#logo {
+  float: left;
+  font-size: 1.5em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: 600;
+  font-family :Times New Roman;
+  &:hover {
+    color: wheat;
+    text-decoration: none;
+  }
+}
+
+#logo1{
+  color: white !important;
+  font-size: 1.3em;
+  font-family: Segoe UI;    
+  
+  &:hover {
+    font-family: Segoe UI; 
+    color: wheat !important;
+    text-decoration: none;
+   -webkit-transform: scale(1.1); 
+   -moz-transform:    scale(1.1);
+   -ms-transform:     scale(1.1); 
+   -o-transform:      scale(1.1); 
+   
+  }
+}
+
+#logo2{
+  font-family: Segoe UI; 
+  color: white !important;
+  font-size: 1.1em;
+  font-weight: 700;
+  &:hover {
+    color: wheat !important;
+    text-decoration: none;
+    font-family: Segoe UI; 
+   -webkit-transform: scale(1.1); 
+   -moz-transform:    scale(1.1);
+   -ms-transform:     scale(1.1); 
+   -o-transform:      scale(1.1); 
+   
+  }
+}
+
+.dropbtn{
+  width: 120px;
+  font-family: Segoe UI; 
+  height: 60px;
+}
+
+
+.jumbotron {
+  background-image: asset-url('img.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 1200px;
+  height: 450px;
+}
+
+.jumbotron { 
+  h1{
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+  padding-top: 60px;
+  letter-spacing: -1px;
+  font-weight: bold;
+  text-shadow:
+  -3px -3px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;  
+  }
+  h2{
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+  }
+}
+
+.jumbotron .btn {
+    background-color: black;
+    border: #000;
+    &:hover{
+      background-color: grey;
+    }
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+  padding-left: 10px;
+  padding-right: 10px;
+  a {
+    color: #555;
+    &:hover {
+      color: #222;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
+
+.description {
+  margin-top: 0;
+}
+
+.well a {
+  color: #073b15;
+}
+
+.well{
+  flex: 2;
+  padding: 25px;
+  margin-left: 5px;
+}
+
+.well2{
+  flex: 2;
+  padding: 25px;
+  margin-left: 55px;
+}
+
+.well1{
+  padding: 25px;
+}
+
+.row{
+  display: flex; /* Make the container element behave like a table */
+  width: 100%; /* Set full-width to expand the whole page */
+}
+
+.user_info {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.colormatch a {
+  color: black;
+  text-align: center;
+}
+
+.article-actions {
+  padding-top: 5px;
+  a {
+    color: white;
+  }
+}
+
+.butt{
+  margin-top: -20px;
+}
+
+.liking {
+  padding-right: 10px;
+  font-size: 20px;
+  margin-left: 14px;
+}
+
+.liking1 {
+  padding-right: 10px;
+  font-size: 24px;
+  margin-left: 14px;
+}
+
+.btn-warning{
+  background-color:  lightsalmon !important;
+}
+.badge{
+  background-color: #eaeaea !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .btn-fix {
+        width: 50%;
+        display: block;
+        margin: 10px 150px;
+    }
+    .user_info {
+      padding-top: 10px;
+      padding-bottom: 20px;
+      display: none;
+    }
+
+}
+
+.listing {
+  list-style: none;
+  padding-left: 0;
+}
+
+.user-title {
+  color: #073b15;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+
+.input_checkbox input {
+  width: auto !important;
+  top: 5px;
+}
+
+.center-block {
+  float: none;
+}
+
+.chat-container {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 150px;
+  width: 80;
+}
+
+.message-container {
+  .form-control {
+    float: left;
+    width: 88%;
+    height: 55px;
+    font-size: large;
+  }
+  .btn {
+    float: right;
+    position: relative;
+    height: 50px !important;
+    width: 10%;
+  }
+}
+
+.message {
+  padding-left: 5px;
+  padding-top: 10px;
+}
+
+.messages {
+  border: 1px solid #eaeaea;
+  height: 20em;
+  position: relative;
+  overflow: auto;
+  font-size: 20px;
+}
+
+.comment_info {
+  padding-top: 25px;
+  padding-left: 29px;
+}
+
+#comment_well {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.form-horizontal .control-label {
+  padding-top: 0;
+}
+
+.custom-image-style {
+  padding-bottom: 20px;
+}
+
+
+.core-sprite {
+  background-image: image-url("core-sprite-2x.png");
+  background-size: 405px 379px;
+  background-repeat: no-repeat;
+}
+
+.dropzone{
+  opacity: 1;
+}
+
+.hide-text {
+  display: block;
+  overflow: hidden;
+  text-indent: 110%;
+  white-space: nowrap;
+}
+
+.fa-solid{
+  color:#DC143C	;
+}
+
+.bookmarked{
+  color: cornflowerblue !important;
+}
+
+.love {
+  background-position: -325px -329px;
+  height: 24px;
+  width: 24px;
+}
+
+.loved {
+  @extend .love;
+  background-position: -200px -330px;
+}
+
+
+.bookmark {
+  @extend .love;
+  background-position: -150px -355px;
+}
+
+.bookmarked {
+  @extend .love;
+  background-position: -353px -273px;
+}
+
+.book{
+  margin-right: 200px;
+  margin-top: -24px;
+  float: right;
+}
+
+
+
+.navbar-form{
+  padding-left: 845px;
+}
+
+.dropdown{
+  padding-right: 15px;
+}
+
+
+.coll{
+  width: 200px;
+  height: 100px !important;
+}
+
+.m-x-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.marg{
+  margin-left: 400px;
+}
+
+.article-thumbs-up, .article-thumbs-down{
+  text-decoration: none !important;
+}
+

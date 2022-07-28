@@ -1,0 +1,9 @@
+<% if like.present? %>
+    <%= link_to like_article_path(article, like:true), method: :post do%>
+    <i class="glyphicon glyphicon-thumbs-up"></i>
+     <% end %>
+<% else %>
+    <%= link_to like_article_path(article, like:false), method: :post do%>
+    <i class="glyphicon glyphicon-thumbs-down"></i>
+    <% end %>
+<% end %>

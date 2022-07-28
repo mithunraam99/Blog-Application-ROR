@@ -1,0 +1,80 @@
+<%= render "shared/page_title", title: " Articles Feed", class:"ali"%>
+<p class="flash"><%= notice %></p>
+
+<form class="navbar-form" action="/search" >
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search Articles..." name="q" required>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+<style>
+  .dropbtn {
+    background-color: black;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    float:right;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content li {
+    color: black !important;
+    padding: 12px 16px;
+    text-decoration: none !important;
+    display: block;
+  }
+
+  .log{
+    color: black !important;
+    text-decoration: none !important;
+    font-weight : 550 !important ;
+  }
+
+  .log1{
+    color: blue !important;
+    text-decoration: none !important;
+    font-weight : bold !important ;
+  }
+
+  .dropdown-content li:hover {background-color: #f1f1f1}
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    float:left;
+  }
+</style>
+
+
+<div class="text-center">
+  <%= will_paginate @articles %>
+  <div class="dropdown">
+    <button class="dropbtn"><span style="font-size: 20px"  >Categories</span></button>
+    <div class="dropdown-content">
+      <li><%= link_to "All Categories", categories_path , class:"log1" %></li>
+      <% Category.order(:name).each do |category| %>
+        <li><%= link_to category.name, category_path(category) , class:"log" %></li>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render "article", obj: @articles %>
+<div class="text-center ">
+  <%= will_paginate @articles %>
+</div>

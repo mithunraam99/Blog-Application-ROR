@@ -1,0 +1,14 @@
+<%= form_for @category, html: {class:'form-horizontal'} do |f| %>
+  <div class="form-group">
+      <%= f.label :name, class:"control-label col-md-2" %>
+      <div class="col-md-8">
+        <%= f.text_field :name, class:'form-control', placeholder: "Enter category", autofocus: true %>
+      </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-8">
+      <%= f.submit(@category.new_record? ? "Add category" : "Update category",
+      class:'btn btn-primary btn-lg btn-xlg') %>
+    </div>
+  </div>
+<% end %>

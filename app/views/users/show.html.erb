@@ -1,0 +1,19 @@
+<%= render 'shared/page_title', title: "#{@user.username}'s Profile" %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <%= image_tag(@user.display_image, class: "custom-image-style") if @user.image.attached? %>
+  </div>
+</div>
+<% if @user.articles.count != 0 %>
+  <h4 class="text-center"><%= @user.username %>'s articles</h4>
+  <div class="text-center">
+    <%= will_paginate @user_articles  %>
+  </div>
+  <%= render 'articles/article1', obj: @user_articles %>
+  <div class="text-center">
+    <%= will_paginate @user_articles %>
+  </div>
+<% else %>
+  <h4 class="text-center">No articles yet!</h4>
+<% end %>

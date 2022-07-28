@@ -1,0 +1,26 @@
+<%= render 'shared/page_title', title: "Available categories" %>
+
+<div class="text-center">
+  <%= will_paginate %>
+  <% @categories.each do |category| %>
+    <ul class="listing">
+      <div class="row">
+        <div class="well col-md-4 col-md-offset-4">
+          <li class="user-title"><%= link_to category.name.capitalize, category_path(category) %></li>
+          <li><small><%= pluralize(category.articles.count, 'article')  if category.articles %></small></li>
+          <% if logged_in? && current_user.admin? %>
+            <li>
+              <%= link_to "Edit this category", edit_category_path(category) %>
+            </li>
+            <li>
+              <%= link_to "Delete this category", category_path(category), method: :delete,
+              data: { confirm:
+              "Are you sure you want to delete the user and all associated articles?"} %>
+            </li>
+            <% end %>
+        </div>
+      </div>
+    </ul>
+  <% end %>
+  <%= will_paginate %>
+</div>

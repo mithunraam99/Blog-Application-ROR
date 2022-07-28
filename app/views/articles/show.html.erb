@@ -1,0 +1,92 @@
+<%= render "shared/page_title", title: @article.name %>
+<div align = "center">
+  <% @article.image.attachments.each do |image| %>
+    <%= image_tag(@article.display_image(image), class: "custom-image-style") %> &nbsp; &nbsp;
+  <% end %>
+</div>
+<div align = "center">
+  <% if @article.categories.any? %>
+    <p>Categories: <%= render @article.categories %></p>
+  <% end %>
+  <div class="well1 col-md-8 col-md-offset-2">
+    <%= simple_format(@article.description) %>
+    <hr>
+    <p class="text-center">
+      <em>Created by:</em>
+    </p>
+    <p class="text-center">
+      <h5><%= image_tag(@article.user.display_image2, class: "custom-image-style") if @article.user.image.attached? %></h5>
+    </p>
+    <p class="text-center">
+      <h4><%= @article.user.username %></h4>
+  <%= time_ago_in_words(@article.created_at) %> ago
+    </p>
+   
+      <div class="articles-actions">
+         <% if logged_in? && (current_user == @article.user || current_user.admin?) %>
+        <div class="articles-actions">
+            <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-xs btn-warning btn-fix" %>
+          <%= link_to "Delete this article", article_path(@article),
+                      method: :delete,
+                      data: { confirm: "Are you sure that you want to delete this article?" },
+                      class: "btn btn-xs btn-danger btn-fix" %>
+        </div>
+      <% end %>
+    </center>
+  </div>
+</div>
+</div>
+</div>
+<div class="row marg">
+  <div class="pull-right liking1">
+    <span id="thumbs-up-wrapper-<%= @article.id %>">
+      <%= render "articles/like_icon", { article: @article, like: true } %>
+    </span>
+    <span id="thumbs-down-wrapper-<%= @article.id %>">
+      <%= render "articles/like_icon", { article: @article, like: false } %>
+    </span>
+  </div>
+</div>
+<div class="col-md-2 book">
+  <div id="bookmark-icon-post-<%= @article.id.to_s %>" class="ml-auto">
+    <%= render "bookmark_icon", { is_bookmarked: @article.is_bookmarked(current_user), article: @article } %>
+  </div>
+</div>
+</div>
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <hr>
+      <%= form_for([@article, @comment], remote: true, html: { class: "form-horizontal" }) do |f| %>
+        <div class="form-group">
+          <%= f.label :description, "Comment:", class: "control-label col-md-2" %>
+          <div class="col-md-8">
+            <%= f.text_area :description, rows: 3, class: "form-control", placeholder: "Enter comment here" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+            <%= f.submit "Submit comment", class: "btn btn-primary btn-lg btn-xlg" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+<% end %>
+<% if @article.comments != 0 %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Bloggers Comments: </h3>
+      <div id="messages">
+        <%= render partial: "comments/comments", object: @comments %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>No comments yet!</h3>
+    </div>
+  </div>
+<% end %>
