@@ -14,7 +14,7 @@ class Article < ApplicationRecord
   default_scope -> { order(updated_at: :desc) }
 
   validates :name, :description, :user_id, presence: true
-  validates :description, length: { minimum: 5, maximum: 500 }
+  validates :description, length: { minimum: 5, maximum: 10000 }
   validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
                                     message: "must be a valid image format" },
                     size: { less_than: 5.megabytes,

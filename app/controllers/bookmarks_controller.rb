@@ -1,6 +1,7 @@
 class BookmarksController < ApplicationController
   before_action :require_user
   before_action :validate_user, only: :index
+  before_action :article_check, only: :create
 
   def index
     user = User.find(params[:user_id])
@@ -16,6 +17,7 @@ class BookmarksController < ApplicationController
       respond_to :js
     else
       flash[:danger] = "Something went wrong ..."
+      redirect_to articles_path
     end
   end
 
@@ -26,6 +28,7 @@ class BookmarksController < ApplicationController
       respond_to :js
     else
       flash[:danger] = "Something went wrong ..."
+      redirect_to articles_path
     end
   end
 
@@ -38,6 +41,14 @@ class BookmarksController < ApplicationController
     unless params[:user_id].to_i == current_user.id
       flash[:danger] = "Invalid user"
       redirect_to user_bookmarks_path(current_user.id)
+    end
+  end
+
+  def article_check
+    article_id = params[:article_id]
+    if !Article.find_by(id:article_id).present?
+      flash[:danger] = "Articles not found"
+      redirect_to articles_path
     end
   end
 end

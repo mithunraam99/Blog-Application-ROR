@@ -4,7 +4,7 @@
       <div class="pull-right">
         <%= image_tag(article.image.attachments.first, size: "160x130") if article.image.attached? %>
       </div>
-      <h4><%= link_to article.name, article_path(id: article.id) %></h4>
+      <h3><%= link_to article.name, article_path(id: article.id) %></h3>
       <p><%= truncate(article.description, length: 300) %></p>
       <% if article.categories.any? %>
         <p>Categories: <%= render article.categories %></p>
@@ -39,13 +39,14 @@
   </div>
 </div>
 <% end %>
+
 <%= javascript_tag do %>
-  jQuery(document).on("click", ".article-thumbs-up, .article-thumbs-down", function(event) {
-  jQuery.ajax({
-  url: this.dataset.url,
-  method: 'POST',
-  success: function(result) {
-  }
-  })
+  jQuery(".article-thumbs-up, .article-thumbs-down").unbind().click(function(event) {
+      jQuery.ajax({
+          url: this.dataset.url,
+          method: 'POST',
+          success: function(result) {
+          }
+      })
   })
 <% end %>

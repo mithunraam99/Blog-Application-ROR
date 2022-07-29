@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   before_save :downcase_email, :username_format
 
-  validates :username, presence: true, uniqueness: true, length: { maximum: 10 }, uniqueness: { case_sensitive: false }
+  validates :username, presence: true, uniqueness: true, length: { minimum:3,maximum: 15 }, uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     length: { maximum: 255 },
@@ -48,6 +48,15 @@ class User < ApplicationRecord
                     gravity: "center",
                     resize: "120x120^",
                     crop: "150x150+0+0",
+                  })
+  end
+
+  def display_image3
+    image.variant(combine_options: {
+                    auto_orient: true,
+                    gravity: "center",
+                    resize: "90x90^",
+                    crop: "65x65+0+0",
                   })
   end
 

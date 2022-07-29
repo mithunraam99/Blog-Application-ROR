@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :require_user
   before_action :require_admin, except: [:show, :index]
   
   
@@ -23,7 +24,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      flash[:notice] = "Category name updated successfully"
+      flash[:success] = "Category name updated successfully"
       redirect_to @category
     else
       render 'edit'

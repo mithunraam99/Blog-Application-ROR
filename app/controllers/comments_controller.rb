@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       ActionCable.server.broadcast "comments", render(partial: 'comments/comment', object: @comment)
     else
-      flash[:danger] = "Comment was not created"
+      flash[:danger] = "Please enter something to comment"
       redirect_to request.referrer
     end
   end

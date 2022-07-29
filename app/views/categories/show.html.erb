@@ -11,3 +11,15 @@
 <% else %>
   <h4 class="text-center">No articles yet!</h4>
 <% end %>
+
+<%= javascript_tag do %>
+  jQuery(document).on("click", ".article-thumbs-up, .article-thumbs-down", function(event) {
+  // showpage
+  jQuery.ajax({
+  url: this.dataset.url,
+  method: 'POST',
+  success: function(result) {
+  }
+  })
+  })
+<% end %>

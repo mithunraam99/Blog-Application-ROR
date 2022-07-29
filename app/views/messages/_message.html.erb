@@ -3,7 +3,7 @@
     <small><em><%= time_ago_in_words(message.created_at) %> ago</em></small>
   </p>
   <p>
-    <%= gravatar_for(message.user, size: 45) %>
+    <%= image_tag(message.user.display_image3, class: "custom-image-style") if message.user.image.attached? %>
     <strong><%= message.user.username %>:</strong>&nbsp;
     <span class="content">
       <%= message.content %>

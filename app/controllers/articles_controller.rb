@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :like]
-  before_action :require_user, except: [:index, :show, :like]
+  before_action :require_user
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :require_user_like, only: [:like]
 
@@ -50,13 +50,17 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy
-    flash[:success] = "Article deleted successfully!"
+    if @article.present?
+        @article.destroy
+        flash[:success] = "Article deleted successfully!" 
+    else
+        flash[:danger] = "You cannot perform this action"
+    
+    end
     redirect_to articles_path
   end
 
   def like
-    #@like = Like.find(params[:id])
     like = @article.likes.where(user_id: current_user.id).first
     if like.present?
       like.update!(like: params[:like])
@@ -74,7 +78,7 @@ class ArticlesController < ApplicationController
   private
 
   def set_article
-    @article = Article.find(params[:id])
+    @article = Article.find_by(id:params[:id])
   end
 
   def article_params
@@ -82,7 +86,10 @@ class ArticlesController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @article.user and !current_user.admin?
+    if @article.blank?
+      flash[:danger] = "Articles not found"
+      redirect_to articles_path
+    elsif current_user != @article.user and !current_user.admin?
       flash[:danger] = "You can only edit or delete your own articles"
       redirect_to articles_path
     end

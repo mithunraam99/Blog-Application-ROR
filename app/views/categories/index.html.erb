@@ -1,5 +1,7 @@
 <%= render 'shared/page_title', title: "Available categories" %>
-
+<% if @categories.size == 0 %>
+  <h3 class="text-center"> No Categories Available</h3>
+<% end %> 
 <div class="text-center">
   <%= will_paginate %>
   <% @categories.each do |category| %>
